@@ -1,0 +1,50 @@
+.research-source-review {
+  width: min(860px, 94vw);
+}
+
+.research-source-review .rsr-card {
+  padding: 14px;
+  margin-block: 14px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+}
+
+.research-source-review .rsr-versions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: 16px;
+}
+
+.research-source-review pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 12px;
+  background: var(--background-secondary);
+  border-radius: 6px;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.research-source-review .rsr-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-block: 10px;
+}
+
+.research-source-review .rsr-muted {
+  color: var(--text-muted);
+  font-size: var(--font-small);
+}
+
+.research-source-review .rsr-status {
+  font-weight: 600;
+  color: var(--text-accent);
+}
+
+.research-source-review .rsr-message {
+  padding: 10px;
+  background: var(--background-secondary);
+  border-inline-start: 3px solid var(--interactive-accent);
+}

@@ -1,0 +1,11 @@
+{
+	"id": "research-source-review",
+	"name": "Research Source Review",
+	"version": "1.0.0",
+	"minAppVersion": "1.13.4",
+	"description": "Check whether a source passage changed after you approved it for a note.",
+	"author": "Michael Lip",
+	"authorUrl": "https://github.com/theluckystrike",
+	"fundingUrl": "https://github.com/sponsors/theluckystrike",
+	"isDesktopOnly": false
+}

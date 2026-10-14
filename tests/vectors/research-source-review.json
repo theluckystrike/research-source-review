@@ -1,0 +1,464 @@
+{
+ "slug": "research-source-review",
+ "module": "research-source-review/src/review",
+ "function": "runScenario",
+ "cases": [
+  {
+   "name": "Pin the linked 30 day paragraph",
+   "args": [
+    {}
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Scan without a change",
+   "args": [
+    {
+     "source": "30 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Change 30 days to 14 days",
+   "args": [
+    {
+     "source": "14 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "changed",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "14 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Change an unrelated paragraph",
+   "args": [
+    {
+     "source": "14 people\n\n30 days ^limit\n\nNew unrelated text"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Delete the block ID",
+   "args": [
+    {
+     "source": "30 days"
+    }
+   ],
+   "expected": {
+    "status": "missing-block",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "Rename the source while active",
+   "args": [
+    {
+     "rename": "New.md"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days",
+    "sourcePath": "New.md",
+    "current": "30 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Move the paragraph to another line",
+   "args": [
+    {
+     "source": "A new introduction.\n\n30 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Approve 14 days then restart",
+   "args": [
+    {
+     "source": "14 days ^limit",
+     "approve": true,
+     "restart": true
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "14 days",
+    "sourcePath": "Source.md",
+    "current": "14 days",
+    "accepted": true
+   }
+  },
+  {
+   "name": "Stop approval of unseen text",
+   "args": [
+    {
+     "shown": "14 days ^limit",
+     "source": "7 days ^limit",
+     "approve": true
+    }
+   ],
+   "expected": {
+    "status": "changed",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "7 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Missing source keeps the baseline",
+   "args": [
+    {
+     "source": null
+    }
+   ],
+   "expected": {
+    "status": "missing-source",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "Moved block ID is resolved again",
+   "args": [
+    {
+     "source": "A paragraph.\n\nA second paragraph.\n\n30 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Exact punctuation changes",
+   "args": [
+    {
+     "source": "30 days. ^limit"
+    }
+   ],
+   "expected": {
+    "status": "changed",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30 days.",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Exact internal spaces change",
+   "args": [
+    {
+     "source": "30  days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "changed",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30  days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Multiline paragraph keeps exact text",
+   "args": [
+    {
+     "approved": "30 days\nwith a review",
+     "source": "30 days\nwith a review ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days\nwith a review",
+    "sourcePath": "Source.md",
+    "current": "30 days\nwith a review",
+    "accepted": false
+   }
+  },
+  {
+   "name": "A heading block is excluded",
+   "args": [
+    {
+     "source": "# 30 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unsupported",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "A list block is excluded",
+   "args": [
+    {
+     "source": "- 30 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unsupported",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "A quote block is excluded",
+   "args": [
+    {
+     "source": "> 30 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unsupported",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "An ID inside a fence is excluded",
+   "args": [
+    {
+     "source": "```\n30 days ^limit\n```"
+    }
+   ],
+   "expected": {
+    "status": "missing-block",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "Duplicate explicit IDs are excluded",
+   "args": [
+    {
+     "source": "30 days ^limit\n\n14 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unsupported",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "A different ID is missing",
+   "args": [
+    {
+     "source": "30 days ^other"
+    }
+   ],
+   "expected": {
+    "status": "missing-block",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "An unchanged approval updates the checked record",
+   "args": [
+    {
+     "approve": true
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30 days",
+    "accepted": true
+   }
+  },
+  {
+   "name": "Missing block cannot be approved",
+   "args": [
+    {
+     "source": "14 days",
+     "approve": true
+    }
+   ],
+   "expected": {
+    "status": "missing-block",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "Missing source cannot be approved",
+   "args": [
+    {
+     "source": null,
+     "approve": true
+    }
+   ],
+   "expected": {
+    "status": "missing-source",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "CRLF paragraph keeps exact line endings",
+   "args": [
+    {
+     "approved": "30 days\r\nwith a review",
+     "source": "30 days\r\nwith a review ^limit\r\n"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days\r\nwith a review",
+    "sourcePath": "Source.md",
+    "current": "30 days\r\nwith a review",
+    "accepted": false
+   }
+  },
+  {
+   "name": "Frontmatter ID is excluded",
+   "args": [
+    {
+     "source": "---\nclaim: 30 days ^limit\n---"
+    }
+   ],
+   "expected": {
+    "status": "missing-block",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "An HTML block is excluded",
+   "args": [
+    {
+     "source": "<div>30 days</div> ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unsupported",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "Inline Markdown is compared literally",
+   "args": [
+    {
+     "approved": "**30 days**",
+     "source": "**30 days** ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "**30 days**",
+    "sourcePath": "Source.md",
+    "current": "**30 days**",
+    "accepted": false
+   }
+  },
+  {
+   "name": "A same-paragraph separate marker line is supported",
+   "args": [
+    {
+     "source": "30 days\n^limit"
+    }
+   ],
+   "expected": {
+    "status": "unchanged",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": "30 days",
+    "accepted": false
+   }
+  },
+  {
+   "name": "A table without outer pipes is excluded",
+   "args": [
+    {
+     "source": "Claim | Limit\n--- | ---\nReview | 30 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unsupported",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  },
+  {
+   "name": "A mixed heading and paragraph block is excluded",
+   "args": [
+    {
+     "source": "A heading\n===\n30 days ^limit"
+    }
+   ],
+   "expected": {
+    "status": "unsupported",
+    "approved": "30 days",
+    "sourcePath": "Source.md",
+    "current": null,
+    "accepted": false
+   }
+  }
+ ]
+}
