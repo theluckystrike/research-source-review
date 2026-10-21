@@ -76,6 +76,8 @@ Separate the source paragraph from surrounding blocks with blank lines. Put the 
 
 ## Settings
 
+After a minor or major update, this plugin opens one What's new tab in the background. The tab and settings card suggest other NoteMods plugins and Zovo Chat and link to notemods.com for feedback ([privacy](https://notemods.com/privacy/)). The tab sends no data. Turn the tab off in Settings.
+
 The settings tab contains the GitHub Sponsors account controls and a description of local review data. Free review needs no account. There is no background scan interval to configure. The review window contains the scan, approval, removal, group and report controls.
 
 Pins keep their approved text between plugin loads. Large passages increase the saved data file size. Back up plugin data with the vault if those historical baselines matter to your work.

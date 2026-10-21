@@ -5,6 +5,8 @@ import { SPONSORS, bindPro, isPro, resetPro } from './pro';
 import { ResearchSourceReviewSettingTab } from './settings';
 import { blockLink, canApprove, compare, normalizeData, paragraph, renamedPath, report, type Comparison, type Pin, type ReviewData } from './review';
 import { ReviewModal } from './modal';
+import { setupHello } from './hello/index';
+import WHATS_NEW from './whats-new.json';
 
 export default class ResearchSourceReviewPlugin extends Plugin {
 	settings: ReviewData = { pins: [], groups: [] };
@@ -15,6 +17,8 @@ export default class ResearchSourceReviewPlugin extends Plugin {
 	private serial = 0;
 
 	async onload(): Promise<void> {
+		// First: "What's new" reads its state before the settings load (packages/hello). It does not wait.
+		setupHello(this, WHATS_NEW);
 		this.settings = normalizeData(await this.loadData() as unknown);
 		const pro = createGitHubSponsors(this.app, this.manifest.id, SPONSORS, this);
 		pro.init(); this.pro = pro; bindPro(pro);
