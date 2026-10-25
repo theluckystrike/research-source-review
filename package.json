@@ -1,5 +1,6 @@
 {
 	"name": "research-source-review",
+	"repository": {"type": "git", "url": "theluckystrike/research-source-review.git"},
 	"version": "1.1.0",
 	"private": true,
 	"description": "Check whether a source passage changed after you approved it for a note.",
