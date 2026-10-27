@@ -52,7 +52,7 @@ If Pro ends, free scans still include pins from saved groups. The group names re
 
 ### Dated local review reports (Pro)
 
-Select “Save dated report (Pro)” to create a Markdown note in the vault root. The report records its date, group filter, source paths, dependent notes, check dates, statuses and the two text versions. It runs a new scan before writing the report. It does not approve the passages.
+Select “Save dated report (Pro)” to create a Markdown note in the vault root. The report records its date, group filter, source paths, dependent notes, check dates, statuses and the two text versions. It runs a new scan before writing the report. It does not approve the passages. Without Pro, the button shows the Pro notice with a Sponsor on GitHub button and writes no report.
 
 The file name contains a date and time. A suffix avoids an existing report path. Reports contain source text, so consider their contents before you share a vault or publish a report note.
 

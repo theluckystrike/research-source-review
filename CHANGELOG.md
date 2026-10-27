@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1
+
+### Patch Changes
+
+- 78c1c28: Save dated report (Pro) now shows in the review window without Pro. It shows how to get Pro, with a Sponsor on GitHub button, and writes no report.
+
 ## 1.1.0
 
 ### Minor Changes

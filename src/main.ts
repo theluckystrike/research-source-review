@@ -1,7 +1,7 @@
 import { Notice, Plugin, type TFile } from 'obsidian';
 import type { SponsorsManager } from './license/index';
 import { createGitHubSponsors } from './license/github-obsidian';
-import { SPONSORS, bindPro, isPro, resetPro } from './pro';
+import { SPONSORS, bindPro, isPro, resetPro, proNotice } from './pro';
 import { ResearchSourceReviewSettingTab } from './settings';
 import { blockLink, canApprove, compare, normalizeData, paragraph, renamedPath, report, type Comparison, type Pin, type ReviewData } from './review';
 import { ReviewModal } from './modal';
@@ -149,7 +149,7 @@ export default class ResearchSourceReviewPlugin extends Plugin {
 		});
 	}
 	async saveReport(group = ''): Promise<TFile | null> {
-		if (!isPro()) { new Notice('Local reports need pro. Sign in from the plugin settings.'); return null; }
+		if (!isPro()) { proNotice('Local reports need pro.'); return null; }
 		const results = await this.scan(group);
 		if (!isPro()) return null;
 		const date = new Date().toISOString();

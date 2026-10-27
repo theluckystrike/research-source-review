@@ -1,6 +1,6 @@
 import { Modal, Notice } from 'obsidian';
 import type ResearchSourceReviewPlugin from './main';
-import { isPro } from './pro';
+import { isPro, proText } from './pro';
 import { type Comparison, type Pin } from './review';
 
 type Candidate = Pick<Pin, 'sourcePath' | 'blockId' | 'dependentPath'>;
@@ -54,7 +54,11 @@ export class ReviewModal extends Modal {
 				const groups = el.createDiv({ cls: 'rsr-toolbar' });
 				const name = groups.createEl('input', { attr: { placeholder: 'Research project name', 'aria-label': 'New review group', maxlength: '80' } });
 				this.button(groups, 'Add group (Pro)', async () => { this.message = await this.plugin.addGroup(name.value) ? 'Review group saved.' : 'Enter a group name of 1 to 80 characters.'; });
-			} else el.createEl('p', { cls: 'rsr-muted', text: 'Named review groups and dated local reports need pro. Free pins remain available. Sign in with GitHub from the plugin settings.' });
+			} else {
+				// A free user can select the report button: saveReport shows the Pro notice and writes nothing.
+				this.button(toolbar, 'Save dated report (Pro)', async () => { await this.plugin.saveReport(this.group); });
+				el.createEl('p', { cls: 'rsr-muted', text: proText('Named review groups and dated local reports need pro. Free pins remain available.') });
+			}
 		}
 		if (!this.results.length) el.createEl('p', { text: this.choices ? 'No native paragraph block link was found. Add a link such as [[Source#^limit]] to the active note.' : 'No saved pins in this view. Open a note with a block link and run Pin a source paragraph from the active note.' });
 		for (const result of this.results) this.card(el, result);
