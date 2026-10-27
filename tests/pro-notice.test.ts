@@ -53,7 +53,7 @@ describe('Save dated report for a free user and a Pro user', () => {
 		expect(button, 'The free review window shows Save dated report (Pro).').toBeDefined();
 		expect(button!.disabled).toBe(false);
 		button!.click(); await flush(); await flush();
-		expect(shown).toEqual([{ text: `Local reports need pro. ${PITCH}Sponsor on GitHub`, buttons: 1 }]);
+		expect(shown).toEqual([{ text: `Local reports need Pro. ${PITCH}Sponsor on GitHub`, buttons: 1 }]);
 		expect(create).not.toHaveBeenCalled();
 		expect(saveData).not.toHaveBeenCalled();
 		expect(app.vault.getMarkdownFiles().map((f) => f.path).sort()).toEqual(['Conclusion.md', 'Source.md']);

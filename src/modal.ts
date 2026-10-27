@@ -57,7 +57,7 @@ export class ReviewModal extends Modal {
 			} else {
 				// A free user can select the report button: saveReport shows the Pro notice and writes nothing.
 				this.button(toolbar, 'Save dated report (Pro)', async () => { await this.plugin.saveReport(this.group); });
-				el.createEl('p', { cls: 'rsr-muted', text: proText('Named review groups and dated local reports need pro. Free pins remain available.') });
+				el.createEl('p', { cls: 'rsr-muted', text: proText('Named review groups and dated local reports need Pro. Free pins remain available.') });
 			}
 		}
 		if (!this.results.length) el.createEl('p', { text: this.choices ? 'No native paragraph block link was found. Add a link such as [[Source#^limit]] to the active note.' : 'No saved pins in this view. Open a note with a block link and run Pin a source paragraph from the active note.' });

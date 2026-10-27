@@ -149,7 +149,7 @@ export default class ResearchSourceReviewPlugin extends Plugin {
 		});
 	}
 	async saveReport(group = ''): Promise<TFile | null> {
-		if (!isPro()) { proNotice('Local reports need pro.'); return null; }
+		if (!isPro()) { proNotice('Local reports need Pro.'); return null; }
 		const results = await this.scan(group);
 		if (!isPro()) return null;
 		const date = new Date().toISOString();

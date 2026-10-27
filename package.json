@@ -1,6 +1,6 @@
 {
 	"name": "research-source-review",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"private": true,
 	"description": "Check whether a source passage changed after you approved it for a note.",
 	"main": "main.js",

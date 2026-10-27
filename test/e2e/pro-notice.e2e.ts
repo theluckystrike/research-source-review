@@ -5,7 +5,7 @@ import { pluginId } from './load';
 
 // A free user selects "Save dated report (Pro)" in the review window: the shared Pro notice shows with the
 // "Sponsor on GitHub" button, no report note is written and no data is saved. A Pro user's click writes the report.
-const LEAD = 'Local reports need pro.';
+const LEAD = 'Local reports need Pro.';
 const LABEL = 'Save dated report (Pro)';
 type P = ResearchSourceReviewPlugin & { pro: { opts: { http: unknown }; refreshNow(): Promise<unknown>; signOut(): void; isPro(): boolean } };
 

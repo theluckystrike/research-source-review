@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2
+
+### Patch Changes
+
+- 8e3e6ca: The Pro notice for local reports and the Pro text in the review window now write "Pro" with a capital letter.
+
 ## 1.1.1
 
 ### Patch Changes

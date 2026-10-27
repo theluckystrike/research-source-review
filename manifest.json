@@ -1,7 +1,7 @@
 {
 	"id": "research-source-review",
 	"name": "Research Source Review",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"minAppVersion": "1.13.4",
 	"description": "Check whether a source passage changed after you approved it for a note.",
 	"author": "Michael Lip",
