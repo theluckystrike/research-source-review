@@ -1,9 +1,9 @@
 {
 	"id": "research-source-review",
 	"name": "Research Source Review",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"changes": [
-		"The Pro notice for local reports and the Pro text in the review window now write \"Pro\" with a capital letter."
+		"The Pro notice of Research Source Review now says that one payment turns on Pro in every NoteMods plugin."
 	],
 	"tip": "Run Scan saved pins to check for changed source paragraphs.",
 	"thanks": "Hi, I am Michael, a solo developer in Poland. Research Source Review is one of over 100 small plugins that I make. Thank you for using it in your research notes.",

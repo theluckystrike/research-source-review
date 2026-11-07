@@ -8,7 +8,7 @@ import manifest from '../manifest.json';
 
 // A free user sees "Save dated report (Pro)" in the review window. A click shows the shared Pro notice with the
 // "Sponsor on GitHub" button. No report is written and no data is saved. A Pro user's click writes the report.
-const PITCH = 'Sponsor on GitHub, then sign in from the plugin settings.';
+const PITCH = 'One payment turns on Pro in every NoteMods plugin. Sponsor on GitHub, then sign in from the plugin settings.';
 const LABEL = 'Save dated report (Pro)';
 
 function fakePro(pro: boolean): SponsorsManager {
